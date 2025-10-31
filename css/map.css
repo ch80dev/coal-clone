@@ -1,0 +1,26 @@
+.coal {
+    background-color: #333333;
+}
+.dirt {
+    background-color: #8B5A2B;
+}
+
+.empty {
+    background-color: black;
+    color: white;
+}
+.gold{
+    background-color: #FFD700;
+}
+.iron{
+    background-color:   #8B2500;
+}
+.sky {
+    background-color: #87CEEB;
+}
+.stone{
+    background-color: #A9A9A9;
+}
+.cell{
+    border: 1px lightgrey dotted;
+}
