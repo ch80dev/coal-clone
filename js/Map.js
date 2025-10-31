@@ -62,6 +62,27 @@ class Map {
 
     }
 
+    fetch_start(){
+        let start_x = game.player.last_x;
+        let i = 1;
+        while (true){
+            let left_and_right = [start_x - i, start_x + i];            
+            for (let x of left_and_right){
+                if (!this.is_valid(x, Config.start_y) || this.check_if_falls(x, Config.start_y)){
+                    continue;
+                }                
+                return { x: x, y: Config.start_y};
+            }
+            i++;
+            if (!this.is_valid(left_and_right[0], Config.start_y) 
+                && !this.is_valid(left_and_right[0], Config.start_y)){
+                break;
+            }
+        }
+
+        return { x: Config.start_x, y: Config.start_y };
+    }
+
     fetch_top_or_bottom_y(x, y, what, top){
         let pos_y = y;
         let delta_y = -1;

@@ -4,6 +4,7 @@ class Player{
     is_building = null;
     money = 0;    
     moves = 0;
+    last_x = 0;    
     constructor(){
         
         this.x = Config.start_x;
@@ -25,6 +26,9 @@ class Player{
     }
 
     fall(){
+        if (this.x == null || this.y == null){
+            return;
+        }
         let do_they_fall = game.map.check_if_falls(this.x, this.y);
         if (!do_they_fall){
             return;
@@ -52,12 +56,12 @@ class Player{
     mine(x, y){
         let what_is_being_mined = game.map.at(x, y);
         game.player.money += Config.ore_values[what_is_being_mined];
+        game.map.falling[x][y] = null;
         game.map.is(x, y, 'empty');        
         if (what_is_being_mined != 'dirt'){
             this.moves ++;
         }
-        if (this.moves >= Config.max_moves){
-            
+        if (this.moves >= Config.max_moves){            
             game.end_of_day();
         }
         this.fall();        
@@ -67,7 +71,7 @@ class Player{
         let new_x = this.x + delta_x;
         let new_y = this.y + delta_y;
         let is_valid = game.map.is_valid(new_x, new_y);
-        if (!is_valid || this.moves >= Config.max_moves){
+        if (!is_valid || this.moves >= Config.max_moves || this.x == null || this.y == null){
             return false;
         }
         if (game.map.is_solid(new_x, new_y)){
