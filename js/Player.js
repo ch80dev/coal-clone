@@ -16,54 +16,7 @@ class Player{
     add_to_history(x, y, what){
         this.history.push({  x: x, y: y, what: what } );
     }
-    build(from_x, from_y, to_x, to_y, what){
-        let delta = game.map.fetch_delta(from_x, from_y, to_x, to_y);     
-        let n = 0;
-        if (from_x == to_x){
-            n = this.build_vertical(from_x, from_y, to_y, what, delta);
-        } else if (from_y == to_y){
-            n = this.build_horizontal(from_x, to_y, to_y, what, delta);
-        } else {
-            n = this.build_everywhere()
-        }
-        this.spend(Config.building_costs[what] * n);
-        this.expenses += n;
-        this.is_buying = null;
-        this.is_building = null;
-    }
-    build_everywhere(from_x, from_y, to_x, to_y, what){
-        let n = 0;
-        for (let x = from_x; x <= to_x; x ++){
-            for (let y = from_y; y <= to_y; y ++){
-                game.buildings.is(pos_x, y, what);
-			    n ++;
-            }
-        }
-        return n;
-    }
-    build_horizontal(from_x, to_x, y, what, delta){
-        let n = 0;
-        let pos_x = from_x;
-        while (pos_x != to_x){
-			game.buildings.is(pos_x, y, what);
-			n ++;
-			pos_x += delta.x;
-		}
-        game.buildings.is(pos_x, y, what);
-        return n;		
-    }
-
-    build_vertical(x, from_y, to_y, what, delta){
-        let n = 0;
-        let pos_y = from_y;
-        while (pos_y != to_y){
-			game.buildings.is(x, pos_y, what);
-			n ++;
-			pos_y += delta.y;
-		}
-        game.buildings.is(x, pos_y, what);
-        return n;
-    }
+    
 
     fall(){
         if (this.x == null || this.y == null){

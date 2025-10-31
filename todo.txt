@@ -4,5 +4,12 @@ BUGS
     i don't think it's checking when you click to see if its too much
 
     when you game over - it doesn't disable the buttons - possibly an issue with refresh overriding it.
+
+    i clicked on the specific location or a rough area to place shoring and it placed it, way extended far away than what it should.
+        happens horizontally and I think either way but I just had it happen building left to right ad it went off screen
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
+
+    when the tile that shoring is sitting on moves, that should destroy the shoring.
+
+    try to see what it looks like when a ladder 

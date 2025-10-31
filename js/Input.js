@@ -24,7 +24,7 @@ class Input {
         let to_x = x;
         let to_y = y;
         
-        game.player.build(from_x, from_y, to_x, to_y, game.player.is_buying);
+        game.buildings.build(from_x, from_y, to_x, to_y, game.player.is_buying);
 
     }
 
