@@ -13,7 +13,7 @@ class Game{
 	}
 
 	end_of_day(){
-		
+		this.player.money -= Config.cost_per_day;
 	}
 	next_day(){
 		this.input.allowed = false;		

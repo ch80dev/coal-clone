@@ -1,8 +1,10 @@
 class Config {	
 	static building_icons = { ladder: "[]" };
 	static building_costs = { ladder: 10 };
+
+	static cost_per_day = 50;
 	static dirt_starts_at = 3;
-	static dirt_ends_at = 6;
+	static dirt_ends_at = 6;	
 	static loop_interval_timing = 250;
 	
 	static max_moves = 10;

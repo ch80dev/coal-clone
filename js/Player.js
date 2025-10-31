@@ -1,4 +1,5 @@
 class Player{
+    
     is_buying = null;
     is_building = null;
     money = 0;    
@@ -7,6 +8,8 @@ class Player{
         
         this.x = Config.start_x;
         this.y = Config.start_y;
+        this.expenses = Config.cost_per_day;
+
     }
 
     build(from_x, from_y, to_x, to_y, what){
@@ -14,6 +17,7 @@ class Player{
             for (let pos_y = from_y; pos_y <= to_y; pos_y ++){
                 game.buildings.is(pos_x, pos_y, what);
                 this.spend(Config.building_costs[what]);
+                this.expenses ++;
             }    
         }
         this.is_buying = null;
@@ -27,6 +31,12 @@ class Player{
         }
         this.y ++;
         this.fall();
+    }
+
+    fetch_expenses(){
+        console.log(this.expenses);
+        return this.expenses;
+        
     }
 
     is_at(x, y){
