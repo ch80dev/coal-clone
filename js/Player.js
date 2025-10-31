@@ -2,7 +2,7 @@ class Player{
     
     is_buying = null;
     is_building = null;
-    money = 0;    
+    money = 100;    
     moves = 0;
     last_x = 0;    
     constructor(){

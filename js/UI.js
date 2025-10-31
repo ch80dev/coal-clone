@@ -71,16 +71,19 @@ class UI{
 		$('.placing').html('');
 		$(".cell").removeClass('placing');
 	}
-	place_horizontally(x, y, delta, max){
+	place_horizontally(x, y, delta, max){		
 		let from_x = game.player.is_building.x;
-		let n = 0;
-		for(let pos_x = from_x; pos_x <= x; pos_x += delta.x){
+		let to_x = x;
+		let n = 0;		
+		let pos_x = from_x;
+		while (pos_x != to_x){
 			$(`#cell-${pos_x}-${y}`).html(Config.building_icons[game.player.is_buying]);
 			$(`#cell-${pos_x}-${y}`).addClass('placing');
 			n ++;
 			if (n >= max){
 				return;
-			}			
+			}
+			pos_x += delta.x;
 		}
 	}
 
@@ -102,7 +105,6 @@ class UI{
 	}
 
 	placing(x, y){
-		console.log('placing', x, y);
 		if (game.player.is_building == null){
 			return false;
 		}
@@ -110,7 +112,10 @@ class UI{
 		let from_y = game.player.is_building.y;
 		let how_many_they_can_buy = game.buildings.how_many_they_can_buy(game.player.is_buying);
 		let delta = game.map.fetch_delta(from_x, from_y, x, y);
-		if (delta.x != 0 && delta.y != 0 ){
+		
+		if ((delta.x != 0 && delta.y != 0) 
+			|| (delta.y == 0  && Config.building_orientations[game.player.is_buying] != 'h') 
+			|| (delta.x == 0  && Config.building_orientations[game.player.is_buying] != 'v')){
 			return;
 		}
 		if (delta.x != 0){

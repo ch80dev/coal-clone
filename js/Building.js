@@ -23,6 +23,8 @@ class Building {
             || (game.map.is_valid(x, y + 1) && (game.map.is_solid(x, y + 1) 
                 || this.at(x, y + 1) == 'ladder')))){
             return true;
+        } else if (what == 'shoring' && !game.map.check_if_falls(x, y)){
+            return true;
         }
         return false;
     }

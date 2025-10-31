@@ -62,6 +62,8 @@ class Map {
 
     }
 
+    
+
     fetch_start(){
         let start_x = game.player.last_x;
         let i = 1;
