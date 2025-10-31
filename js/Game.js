@@ -18,6 +18,7 @@ class Game{
 		this.player.last_x = this.player.x;
 		this.player.x = null;
 		this.player.y = null;
+		this.player.history = [];
 	}
 	next_day(){
 		

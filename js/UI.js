@@ -16,7 +16,6 @@ class UI{
 			txt += `<div id='buying-${what}'><button id='buy-${what}' class='buy' ${is_disabled}>${icon}</button>${what} - $${cost} </div>`;
 		}
 		$("#buy_menu").html(txt);
-		console.log(game.player.is_buying);
 		if (game.player.is_buying != null){
 			$("#buying-" + game.player.is_buying).css('font-weight', 'bold');
 		}

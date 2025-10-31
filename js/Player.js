@@ -1,8 +1,8 @@
 class Player{
-    
+    history = [];
     is_buying = null;
     is_building = null;
-    money = 100;    
+    money = 0;    
     moves = 0;
     last_x = 0;    
     constructor(){
@@ -12,7 +12,9 @@ class Player{
         this.expenses = Config.cost_per_day;
 
     }
-
+    add_to_history(x, y, what){
+        this.history.push({  x: x, y: y, what: what } );
+    }
     build(from_x, from_y, to_x, to_y, what){
         let delta = game.map.fetch_delta(from_x, from_y, to_x, to_y);     
         let n = 0;
@@ -70,6 +72,7 @@ class Player{
         if (!do_they_fall){
             return;
         }
+        this.add_to_history(this.x, this.y, 'move');
         this.y ++;
         this.fall();
     }
@@ -92,11 +95,13 @@ class Player{
 
     mine(x, y){
         let what_is_being_mined = game.map.at(x, y);
+        this.add_to_history(x, y, what_is_being_mined);
         game.player.money += Config.ore_values[what_is_being_mined];
-        game.map.falling[x][y] = null;
+        game.map.falling[x][y] = null;        
         game.map.is(x, y, 'empty');        
         if (what_is_being_mined != 'dirt'){
             this.moves ++;
+            
         }
         if (this.moves >= Config.max_moves){            
             game.end_of_day();
@@ -118,8 +123,8 @@ class Player{
         if (delta_y == -1 && game.buildings.at(this.x, this.y) != 'ladder'){
             return;
         }
-
-
+        console.log(this.x, this.y);
+        this.add_to_history(this.x, this.y, 'move');
         this.x += delta_x;
         this.y += delta_y;
         game.player.fall();
@@ -131,5 +136,35 @@ class Player{
         }
         this.money -= amount;
         
+    }
+
+    start(){
+        let new_start = game.map.fetch_start();
+        this.x = new_start.x;
+        this.y = new_start.y;
+    }
+    undo(){
+        if (this.history.length < 1){
+            return;
+        }
+        
+        let last = this.history.pop();
+        console.log(last);
+        if (last.what == 'move'){
+            this.x = last.x;
+            this.y = last.y;
+            
+        } else if (last.what != 'move'){
+            this.money -= Config.ore_values[last.what];
+            game.map.is(last.x, last.y, last.what);
+        }
+        if (last.what != 'move' && last.what != 'dirt'){
+            this.moves --;
+        }
+                    
+        if (game.map.check_if_falls(this.x, this.y)){
+            this.undo();
+        }
+
     }
 }

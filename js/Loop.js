@@ -5,9 +5,7 @@ class Loop{
            
             if (!still_running){
                 game.input.allowed = true;
-                let new_start = game.map.fetch_start();
-		        game.player.x = new_start.x;
-		        game.player.y = new_start.y;
+                game.player.start();
             }
              ui.refresh();
         }
