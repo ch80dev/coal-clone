@@ -37,7 +37,7 @@ class Building {
         }
     }
     build_here(x, y, what){   
-        if (!this.can_go_here(x, y, what) || game.player.money < Config.building_costs[what]){
+        if (!this.can_build_here(x, y, what) || game.player.money < Config.building_costs[what]){
             return;
         }
         this.is(x, y, what);
@@ -64,7 +64,7 @@ class Building {
     }
 
 
-    can_go_here(x, y, what){
+    can_build_here(x, y, what){
         if (what == 'ladder' 
             && ((game.map.is_valid(x, y - 1) 
                 && (game.map.at(x, y - 1) == 'sky' || game.map.is_solid(x, y - 1) 
@@ -73,6 +73,10 @@ class Building {
                 || this.at(x, y + 1) == 'ladder')))){
             return true;
         } else if (what == 'shoring' && !game.map.check_if_falls(x, y)){
+            return true;
+        } else if ((what == 'dynamite_3x3' || what == 'dynamite_1x9') 
+            && game.map.fetch_adjacent_tile_of_type(x, y, 'empty', true).length > 0 
+            && game.map.is_solid(x, y)){
             return true;
         }
         return false;

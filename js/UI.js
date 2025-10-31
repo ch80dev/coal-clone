@@ -55,7 +55,7 @@ class UI{
 		}
 		$(`#cell-${x}-${y}`).css('cursor', 'pointer');
 
-		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null && game.buildings.can_go_here(x, y, game.player.is_buying)){
+		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null && game.buildings.can_build_here(x, y, game.player.is_buying)){
 			$(`#cell-${x}-${y}`).html(Config.building_icons[game.player.is_buying]);
 		}
 	}

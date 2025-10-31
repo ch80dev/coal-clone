@@ -32,18 +32,24 @@ class Map {
         for (let new_x = x - 1; new_x <= x + 1; new_x ++){
             for (let new_y = y - 1; new_y <= y + 1; new_y ++){
                 if (!this.is_valid(new_x, new_y) 
+                    || this.at(new_x, new_y) != what
                     || (new_x == x && new_y == y) 
                     || (orthogonal && new_x != x && new_y != y) ){
                     continue;
-                }
+                }        
+                                
+
                 adjacent.push({ x: new_x, y: new_y });
+                
             }
         }
+        console.log(adjacent);
         if (adjacent.length == 0){
             return null;
         }
         return adjacent[fetch_rand(0, adjacent.length - 1)];
     }
+
 
     fetch_delta(from_x, from_y, to_x, to_y){
         let delta_x =  to_x - from_x;
@@ -108,6 +114,7 @@ class Map {
     is (x, y, what){
         this.grid[x][y] = what;
     }
+    
 
     is_solid(x, y){
         if (!this.is_valid(x, y)){
