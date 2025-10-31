@@ -12,4 +12,9 @@ TODO
 
     when the tile that shoring is sitting on moves, that should destroy the shoring.
 
-    try to see what it looks like when a ladder 
+    try to see what it looks like when a ladder can only be build from the bottom of a shaft to the top of a shaft - not partial builds
+
+    when you fall and get hurt, flash the border of that cell red and do red delta for moves to let the player know
+
+    scale the upkeep cost of buildings so that instead of just +1 - its +1 per every ten levels it goes down. So a ladder within 1-10 deep is 1 but 11-20 is 2.
+
