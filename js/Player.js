@@ -1,4 +1,5 @@
 class Player{
+    falling = 0;
     history = [];
     is_buying = null;
     is_building = null;
@@ -69,11 +70,19 @@ class Player{
             return;
         }
         let do_they_fall = game.map.check_if_falls(this.x, this.y);
+        if (!do_they_fall && this.falling > 1){
+            game.player.moves += this.falling - 1;
+        }
+        if (game.player.moves > Config.max_moves){
+            game.lose("You fell and hurt yourself too badly.");
+        }
         if (!do_they_fall){
+            this.falling = 0;
             return;
         }
         this.add_to_history(this.x, this.y, 'move');
         this.y ++;
+        this.falling ++;
         this.fall();
     }
 
@@ -123,7 +132,6 @@ class Player{
         if (delta_y == -1 && game.buildings.at(this.x, this.y) != 'ladder'){
             return;
         }
-        console.log(this.x, this.y);
         this.add_to_history(this.x, this.y, 'move');
         this.x += delta_x;
         this.y += delta_y;
@@ -149,7 +157,6 @@ class Player{
         }
         
         let last = this.history.pop();
-        console.log(last);
         if (last.what == 'move'){
             this.x = last.x;
             this.y = last.y;

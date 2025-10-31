@@ -67,7 +67,6 @@ class Environment {
         //this.dirt_tile_falls(x, y + 1);
     }
     non_dirt_falls(){
-        console.log('non_dirt_falls');
         for (let x = 0; x < Config.max_x; x ++){
             for (let y = 0; y < Config.max_y; y ++){
                 let does_tile_fall = game.map.check_if_falls(x, y);
@@ -77,7 +76,6 @@ class Environment {
                     || is_non_dirt || (!is_non_dirt && !does_tile_fall)){
                     continue;
                 }                
-                console.log(x, y);
                 game.map.falling[x][y] = null;
                 this.non_dirt_falls_down(x, y, game.map.at(x, y));                             
 
@@ -103,7 +101,6 @@ class Environment {
         }
     }
     non_dirt_starts_to_fall(){
-        console.log('non_dirt_falls');
         for (let x = 0; x < Config.max_x; x ++){
             for (let y = 0; y < Config.max_y; y ++){
                 let does_tile_fall = game.map.check_if_falls(x, y);

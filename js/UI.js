@@ -67,8 +67,14 @@ class UI{
 		}
 		$(`#cell-${x}-${y}`).html("");
 		$(`#cell-${x}-${y}`).css('cursor', 'default');
-		$('.placing').html('');
+		$('.placing').html('');	
 		$(".cell").removeClass('placing');
+	}
+
+	lose(msg){
+		$('button').prop('disabled', true);
+		$("#map").css('opacity', .25);
+		$("#game_over").html(msg + " Game Over!");
 	}
 	place_horizontally(x, y, delta, max){		
 		let from_x = game.player.is_building.x;

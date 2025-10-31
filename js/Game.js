@@ -2,6 +2,7 @@ class Game{
 	animating = true;
 	buildings = new Building();
 	environment = new Environment();
+
 	input = new Input();
 	loop = new Loop();
 	map = new Map();
@@ -19,15 +20,17 @@ class Game{
 		this.player.x = null;
 		this.player.y = null;
 		this.player.history = [];
+		if (this.player.money < 0){
+			this.lose("You ran out of money!");
+		}
 	}
-	next_day(){
-		
+
+	lose(msg){
+		ui.lose(msg);
+	}
+
+	next_day(){		
 		this.input.allowed = false;		
-		this.player.moves = 0;
-		
-		
-	}
-	start_loop(){
-		
+		this.player.moves = 0;				
 	}
 }

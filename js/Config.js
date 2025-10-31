@@ -1,5 +1,5 @@
 class Config {	
-	static building_icons = { ladder: "[]", shoring: "=" };
+	static building_icons = { ladder: "[]", shoring: "=", dynamite_3x3: 'x', dynamite_1x9: 'x' };
 	static building_costs = { ladder: 10, shoring: 25 };
 	static building_orientations = { ladder: 'v', shoring: 'h'}
 	static cost_per_day = 50;
