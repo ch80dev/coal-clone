@@ -2,11 +2,13 @@ class Input {
     allowed = true;    
 
     buy_button_pressed(what){
-        if (game.player.is_buying === null){
+        if (game.player.is_buying === null 
+            || (game.player.is_buying != null && game.player.is_buying != what)){
             game.player.is_buying = what;
             return;
         }
         game.player.is_buying = null;
+        game.player.is_building = null;
     }
 
     click(x, y){
@@ -17,7 +19,12 @@ class Input {
             game.player.is_building = { x: x, y: y };
             return;
         }
-        game.player.build(game.player.is_building.x, game.player.is_building.y, x, y, game.player.is_buying);
+        let from_x = game.player.is_building.x;
+        let from_y = game.player.is_building.y;
+        let to_x = x;
+        let to_y = y;
+        
+        game.player.build(from_x, from_y, to_x, to_y, game.player.is_buying);
 
     }
 

@@ -1,0 +1,2 @@
+BUGS
+    you can appear to build one more building than what you can afford. - because of how I programmed it.

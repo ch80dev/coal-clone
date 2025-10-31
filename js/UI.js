@@ -13,9 +13,13 @@ class UI{
 			if (game.buildings.how_many_they_can_buy(what) < 1 || game.player.moves < Config.max_moves){
 				is_disabled = " disabled ";
 			}
-			txt += `<div><button id='buy-${what}' class='buy' ${is_disabled}>${icon}</button>${what} - $${cost} </div>`;
+			txt += `<div id='buying-${what}'><button id='buy-${what}' class='buy' ${is_disabled}>${icon}</button>${what} - $${cost} </div>`;
 		}
 		$("#buy_menu").html(txt);
+		console.log(game.player.is_buying);
+		if (game.player.is_buying != null){
+			$("#buying-" + game.player.is_buying).css('font-weight', 'bold');
+		}
 	}
 
 	display_map(){
@@ -82,18 +86,23 @@ class UI{
 
 	place_vertically(x, y, delta, max){
 		let from_y = game.player.is_building.y;
-		let n = 0;
-		for(let pos_y = from_y; pos_y <= y; pos_y += delta.y){
+		let to_y = y;
+		let n = 0;		
+		let pos_y = from_y;
+		while (pos_y != to_y){
 			$(`#cell-${x}-${pos_y}`).html(Config.building_icons[game.player.is_buying]);
 			$(`#cell-${x}-${pos_y}`).addClass('placing');
 			n ++;
 			if (n >= max){
 				return;
 			}
-		}	
+			pos_y += delta.y;
+		}
+		
 	}
 
 	placing(x, y){
+		console.log('placing', x, y);
 		if (game.player.is_building == null){
 			return false;
 		}
