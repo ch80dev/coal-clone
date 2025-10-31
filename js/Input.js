@@ -10,6 +10,7 @@ class Input {
     }
 
     click(x, y){
+        console.log(game.player.is_buying, game.player.is_building);
         if (game.player.is_buying == null){
             return;
         }
