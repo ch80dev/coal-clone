@@ -1,6 +1,6 @@
 class Config {	
-	static building_icons = { ladder: "[]" };
-	static building_costs = { ladder: 10 };
+	static building_icons = { ladder: "[]", shoring: "=" };
+	static building_costs = { ladder: 10, shoring: 25 };
 
 	static cost_per_day = 50;
 	static dirt_starts_at = 3;

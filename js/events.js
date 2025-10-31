@@ -27,7 +27,7 @@ $(document).on('mouseover', '.cell', function(e){
 })
 
 $(document).on('keydown', 'body', function(e){	
-	game.input.key(e.key.substring(5).toLowerCase());
+	game.input.key(e.key);
 	ui.refresh();
 });
 

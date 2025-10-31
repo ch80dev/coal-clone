@@ -25,6 +25,13 @@ class Input {
     key(what){
         let delta_x = 0;
         let delta_y = 0;
+        if (what === ' ' && game.player.moves == Config.max_moves){
+            game.next_day();
+            return;
+        }
+
+        what = what.substring(5).toLowerCase()
+
         if (what == 'left'){
             delta_x = -1;
         } else if (what == 'right'){

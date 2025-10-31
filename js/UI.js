@@ -26,7 +26,7 @@ class UI{
 				let building_here = game.buildings.at(x, y);
 				let tile_class = game.map.at(x, y);
 				let txt_in_cell = "";
-				if (game.player.x == x && game.player.y == y && game.player.moves > 0){
+				if (game.player.x == x && game.player.y == y && Config.max_moves - game.player.moves > 0){
 					txt_in_cell = "O";
 				} else if (building_here != null){
 					txt_in_cell = Config.building_icons[building_here];
@@ -115,6 +115,10 @@ class UI{
 		$("#end_of_day_money").css('color', 'black');
 		if (balance_after_expenses < 0){
 			$("#end_of_day_money").css('color', 'red');
+		}
+		$("#next").prop('disabled', false);
+		if (Config.max_moves - game.player.moves > 0){
+			$("#next").prop('disabled', true);
 		}
 		$("#end_of_day_money").html(`(${ balance_after_expenses })`)
 		$("#moves").html(Config.max_moves - game.player.moves);
