@@ -10,7 +10,7 @@ class Config {
 	static max_moves = 10;
 	static max_x = 50;
 	static max_y = 40;
-
+	static non_dirt = ['empty', 'sky', 'dirt'];
 
 	static ores = ['coal', 'iron', 'gold'];
 	static ore_percents ={ coal: .1, iron: .05, gold: .01 };
@@ -20,6 +20,6 @@ class Config {
 	
 	static start_x = 0;
 	static start_y = 2;
-
+	static time_for_tile_to_fall = 3;
 
 }

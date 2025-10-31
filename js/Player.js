@@ -34,13 +34,12 @@ class Player{
     }
 
     fetch_expenses(){
-        console.log(this.expenses);
-        return this.expenses;
-        
+        return this.expenses;        
     }
 
     is_at(x, y){
-        return this.x == x && this.y == y;
+        
+        return this.x === x && this.y === y;
     }
 
     is_building_at(x, y){
@@ -58,8 +57,7 @@ class Player{
             this.moves ++;
         }
         if (this.moves >= Config.max_moves){
-            this.x = Config.start_x;
-            this.y = Config.start_y;
+            
             game.end_of_day();
         }
         this.fall();        

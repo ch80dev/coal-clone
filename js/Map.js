@@ -1,11 +1,14 @@
 class Map {
     grid = [];
+    falling = [];
     generator = new MapGenerator();
     constructor(){
         for (let x = 0; x < Config.max_x; x ++ ){
             this.grid[x] = [];
+            this.falling[x] = [];
             for (let y = 0; y < Config.max_y; y ++ ){
                 this.grid[x][y] = null;
+                this.falling[x][y] = null;
             }    
         }
     }

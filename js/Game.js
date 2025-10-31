@@ -14,10 +14,14 @@ class Game{
 
 	end_of_day(){
 		this.player.money -= Config.cost_per_day;
+		this.environment.non_dirt_starts_to_fall();
+		this.player.x = null;
+		this.player.y = null;
 	}
 	next_day(){
 		this.input.allowed = false;		
 		this.player.moves = 0;
+		
 	}
 	start_loop(){
 		

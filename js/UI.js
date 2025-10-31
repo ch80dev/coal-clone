@@ -24,12 +24,16 @@ class UI{
 			txt += "<div class='row'>";
 			for (let x = 0; x < Config.max_x; x ++){
 				let building_here = game.buildings.at(x, y);
+				let falling = game.map.falling[x][y];
 				let tile_class = game.map.at(x, y);
 				let txt_in_cell = "";
-				if (game.player.x == x && game.player.y == y && Config.max_moves - game.player.moves > 0){
+				if (game.player.is_at(x, y) && Config.max_moves - game.player.moves > 0){
 					txt_in_cell = "O";
 				} else if (building_here != null){
 					txt_in_cell = Config.building_icons[building_here];
+				} else if (falling != null){
+					txt_in_cell = falling;
+				
 				}
 				txt += `<div id='cell-${x}-${y}' class='cell ${tile_class}'>${txt_in_cell}</div>`;
 			}
