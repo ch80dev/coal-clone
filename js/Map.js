@@ -17,10 +17,8 @@ class Map {
         let new_x = x;
         let new_y = y + 1;
 
-        if (!this.is_valid(new_x, new_y)){
-            return false;
-        }
-        if (this.is_solid(new_x, new_y) ){
+        if (!this.is_valid(new_x, new_y) || this.is_solid(new_x, new_y) 
+            || game.buildings.at(new_x, new_y) != null){
             return false;
         }
         return true;
@@ -42,6 +40,23 @@ class Map {
             return null;
         }
         return adjacent[fetch_rand(0, adjacent.length - 1)];
+    }
+
+    fetch_delta(from_x, from_y, to_x, to_y){
+        let delta_x =  to_x - from_x;
+        let delta_y = to_y - from_y;
+        if (delta_x > 0){
+            delta_x = 1;
+        } else if (delta_x < 0){ 
+            delta_x = -1;
+        }
+        if (delta_y > 0){
+            delta_y = 1;
+        } else if (delta_y < 0){ 
+            delta_y = -1;
+        }
+        return { x : delta_x, y: delta_y };
+
     }
 
     fetch_top_or_bottom_y(x, y, what, top){

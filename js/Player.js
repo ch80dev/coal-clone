@@ -1,4 +1,6 @@
 class Player{
+    is_buying = null;
+    is_building = null;
     money = 0;    
     moves = 0;
     constructor(){
@@ -6,6 +8,18 @@ class Player{
         this.x = Config.start_x;
         this.y = Config.start_y;
     }
+
+    build(from_x, from_y, to_x, to_y, what){
+        for (let pos_x = from_x; pos_x <= to_x; pos_x ++){
+            for (let pos_y = from_y; pos_y <= to_y; pos_y ++){
+                game.buildings.is(pos_x, pos_y, what);
+                this.spend(Config.building_costs[what]);
+            }    
+        }
+        this.is_buying = null;
+        this.is_building = null;
+    }
+
     fall(){
         let do_they_fall = game.map.check_if_falls(this.x, this.y);
         if (!do_they_fall){
@@ -13,6 +27,17 @@ class Player{
         }
         this.y ++;
         this.fall();
+    }
+
+    is_at(x, y){
+        return this.x == x && this.y == y;
+    }
+
+    is_building_at(x, y){
+        if (this.is_building == null){
+            return false;
+        }
+        return this.is_building.x == x && this.is_building.y == y;
     }
 
     mine(x, y){
@@ -34,7 +59,6 @@ class Player{
         let new_x = this.x + delta_x;
         let new_y = this.y + delta_y;
         let is_valid = game.map.is_valid(new_x, new_y);
-        console.log(is_valid);
         if (!is_valid || this.moves >= Config.max_moves){
             return false;
         }
@@ -42,13 +66,21 @@ class Player{
             this.mine(new_x, new_y);
             return;
         }
-        if (delta_y == -1){
+        if (delta_y == -1 && game.buildings.at(this.x, this.y) != 'ladder'){
             return;
         }
 
 
         this.x += delta_x;
         this.y += delta_y;
+        game.player.fall();
+    }
+    spend(amount) {
+        if (this.money < amount){
+            console.log('not enough money');
+            return;
+        }
+        this.money -= amount;
         
     }
 }
