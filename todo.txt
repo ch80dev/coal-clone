@@ -5,6 +5,7 @@ BUGS
 
     when you game over - it doesn't disable the buttons - possibly an issue with refresh overriding it.
 
+    when you hover over falling tiles, it removes falling from it
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
 

@@ -1,7 +1,7 @@
 class Config {	
-	static building_icons = { ladder: "[]", shoring: "=", dynamite_3x3: 'x', dynamite_1x9: 'x' };
-	static building_costs = { ladder: 10, shoring: 25, dynamite_3x3: 50, dynamite_1x9: 50  };
-	static building_orientations = { ladder: 'v', shoring: 'h', dynamite_3x3: 0, dynamite_1x9: 0 }
+	static building_icons = { ladder: "[]", shoring: "=", dynamite_3x3: 'x'}; //, dynamite_1x9: 'x' };
+	static building_costs = { ladder: 10, shoring: 25, dynamite_3x3: 50}; //, dynamite_1x9: 50  };
+	static building_orientations = { ladder: 'v', shoring: 'h', dynamite_3x3: 0}; //, dynamite_1x9: 0 }
 	static cost_per_day = 50;
 	static dirt_starts_at = 3;
 	static dirt_ends_at = 6;	
