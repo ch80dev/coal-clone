@@ -5,8 +5,6 @@ BUGS
 
     when you game over - it doesn't disable the buttons - possibly an issue with refresh overriding it.
 
-    i clicked on the specific location or a rough area to place shoring and it placed it, way extended far away than what it should.
-        happens horizontally and I think either way but I just had it happen building left to right ad it went off screen
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
 
@@ -18,3 +16,4 @@ TODO
 
     scale the upkeep cost of buildings so that instead of just +1 - its +1 per every ten levels it goes down. So a ladder within 1-10 deep is 1 but 11-20 is 2.
 
+    redo build code now that I made build sections in stead of the stupid way of horizontal, vertical, etc
