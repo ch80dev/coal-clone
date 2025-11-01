@@ -6,6 +6,8 @@ BUGS
     when you game over - it doesn't disable the buttons - possibly an issue with refresh overriding it.
 
     when you hover over falling tiles, it removes falling from it
+
+    after non-dirt tiles falls, dirt doesn't fall after it.
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
 
@@ -18,3 +20,6 @@ TODO
     scale the upkeep cost of buildings so that instead of just +1 - its +1 per every ten levels it goes down. So a ladder within 1-10 deep is 1 but 11-20 is 2.
 
     redo build code now that I made build sections in stead of the stupid way of horizontal, vertical, etc
+
+
+    * earning too much money - going to play again and if its still too much, reduce income
