@@ -26,6 +26,7 @@ class UI{
 		for (let y = 0; y < Config.max_y; y ++ ){
 			txt += "<div class='row'>";
 			for (let x = 0; x < Config.max_x; x ++){
+				let building_class = '';
 				let building_here = game.buildings.at(x, y);
 				let falling = game.map.falling[x][y];
 				let tile_class = game.map.at(x, y);
@@ -38,24 +39,46 @@ class UI{
 					txt_in_cell = falling;
 				
 				}
-				txt += `<div id='cell-${x}-${y}' class='cell ${tile_class}'>${txt_in_cell}</div>`;
+				if (building_here != null && building_here.split('_')[0] == 'dynamite'){
+					building_class = 'dynamite';
+				}
+				txt += `<div id='cell-${x}-${y}' class='cell ${tile_class} ${building_class}'>
+					${txt_in_cell}</div>`;
 			}
 			txt += "</div>";
 		}
 		$("#map").html(txt);
 	}
 
+	highlight(start_x, start_y, width, height, what){
+		$(".highlight-dynamite").html('');
+		$(".cell").removeClass('highlight-dynamite');
+
+		let section = game.buildings.fetch_dynamite_section(start_x, start_y, width, height, what);
+		for (let pos of section){
+			$(`#cell-${pos.x}-${pos.y}`).addClass('highlight-dynamite');
+			$(`#cell-${pos.x}-${pos.y}`).html('x');
+		}
+		
+	}
+
 	hover(x, y){	
-		if (game.map.at(x, y) != 'empty' || game.buildings.at(x, y) != null){
+		if (game.buildings.at(x, y) != null || game.player.is_buying == null 
+		|| (game.player.is_buying != null && !game.buildings.can_build_here(x, y, game.player.is_buying))){
 			return;
 		}		
 		let are_they_placing = this.placing(x, y);
-		if (are_they_placing){
+		if ((game.player.is_buying == 'dynamite_3x3' || game.player.is_buying == 'dynamite_1x9')){
+			let height = Number(game.player.is_buying.split('_')[1].substring(0, 1));
+			let width = Number(game.player.is_buying.split('_')[1].substring(2));
+			this.highlight (x, y, width, height, game.player.is_buying);
+			
+		} else if (are_they_placing){
 			return;
 		}
 		$(`#cell-${x}-${y}`).css('cursor', 'pointer');
 
-		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null && game.buildings.can_build_here(x, y, game.player.is_buying)){
+		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null){
 			$(`#cell-${x}-${y}`).html(Config.building_icons[game.player.is_buying]);
 		}
 	}
@@ -65,6 +88,8 @@ class UI{
 		if (game.player.is_at(x, y) || game.player.is_building_at(x, y) || game.buildings.at(x, y) != null){
 			return;
 		}
+		$(".highlight-dynamite").html('');
+		$(".cell").removeClass('highlight-dynamite');
 		$(`#cell-${x}-${y}`).html("");
 		$(`#cell-${x}-${y}`).css('cursor', 'default');
 		$('.placing').html('');	

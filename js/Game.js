@@ -31,6 +31,7 @@ class Game{
 
 	next_day(){		
 		this.input.allowed = false;		
-		this.player.moves = 0;				
+		this.player.moves = 0;		
+		this.buildings.dynamite_explodes();
 	}
 }

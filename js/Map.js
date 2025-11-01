@@ -37,13 +37,9 @@ class Map {
                     || (orthogonal && new_x != x && new_y != y) ){
                     continue;
                 }        
-                                
-
-                adjacent.push({ x: new_x, y: new_y });
-                
+                adjacent.push({ x: new_x, y: new_y });                
             }
         }
-        console.log(adjacent);
         if (adjacent.length == 0){
             return null;
         }
@@ -68,7 +64,39 @@ class Map {
 
     }
 
+
+    fetch_delta_from_nearest_tile(x, y, what){
+        for (let pos_x = x - 1; pos_x <= x + 1; pos_x ++){
+            for (let pos_y = y - 1; pos_y <= y + 1; pos_y ++){
+                const pos_delta = this.fetch_delta(pos_x, pos_y, x, y);
+                if (!this.is_valid(pos_x, pos_y) || this.at(pos_x, pos_y) != what ){
+                    continue;
+                }  
+                if (pos_delta.x != 0){
+                    return { x: pos_delta.x, y: 0 };
+                }
+                if (pos_delta.y != 0){
+                    return { x: 0, y: pos_delta.y };
+                }
+            }    
+        }
+        return { x: 0, y: 0};
+    }
     
+    fetch_section(start_x, start_y, width, height){
+        //let x = start_x;
+		let section = [];
+		//while((delta.x == 1 && x < start_x + width) || (delta.x == -1 && x > start_x - width)) {			
+        for (let x = start_x; x < start_x + width; x ++){
+			for (let y = start_y; y < start_y + height; y++){
+                if (!this.is_valid(x, y)){
+                    continue;
+                }
+				section.push({ x: x, y: y});
+			}
+		}
+        return section;
+    }
 
     fetch_start(){
         let start_x = game.player.last_x;
@@ -124,5 +152,12 @@ class Map {
     }
     is_valid(x, y){
         return !(x < 0 || x >= Config.max_x || y < 0 || y >= Config.max_y);
+    }
+
+    mine_tile(x, y){
+        console.log(this.at(x, y), Config.ore_values[this.at(x, y)]); //NaN bug but can't reproduce
+        game.player.money += Config.ore_values[this.at(x, y)];
+        this.falling[x][y] = null;        
+        this.is(x, y, 'empty');   
     }
 }

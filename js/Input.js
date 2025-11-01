@@ -15,6 +15,15 @@ class Input {
         if (game.player.is_buying == null){
             return;
         }
+        if (game.player.is_buying.split('_')[0] == 'dynamite' 
+            && game.buildings.can_build_here(x, y, game.player.is_buying)){
+            
+            let height = Number(game.player.is_buying.split('_')[1].substring(0, 1));
+			let width = Number(game.player.is_buying.split('_')[1].substring(2));
+            let section = game.buildings.fetch_dynamite_section(x, y, width, height, game.player.is_buying);
+            game.buildings.build_section(game.player.is_buying, section);
+        }
+        
         if (game.player.is_building == null){
             game.player.is_building = { x: x, y: y };
             return;

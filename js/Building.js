@@ -36,22 +36,33 @@ class Building {
             }
         }
     }
-    build_here(x, y, what){   
-        if (!this.can_build_here(x, y, what) || game.player.money < Config.building_costs[what]){
+    build_here(x, y, what, already_paid){   
+        if (game.player.money < Config.building_costs[what]){ //removed can_build_here_check
             return;
         }
+        
         this.is(x, y, what);
-        game.player.spend(Config.building_costs[what]);
-        game.player.expenses ++;
+        if (already_paid){
+            this.pay_for_it(what);
+        }
     }
     build_horizontal(from_x, to_x, y, what, delta){
         let pos_x = from_x;
         while (pos_x != to_x){
 			this.build_here(pos_x, y, what);
 			pos_x += delta.x;
-            console.log(pos_x, delta.x, to_x)
 		}
         this.build_here(pos_x, y, what);
+    }
+
+
+    build_section(what, where, pay_just_once){
+        if (pay_just_once){
+            this.pay_for_it(what);
+        }
+        for (let pos of where){
+            this.build_here(pos.x, pos.y, what, pay_just_once);
+        }
     }
 
     build_vertical(x, from_y, to_y, what, delta){
@@ -62,7 +73,6 @@ class Building {
 		}
         this.build_here(x, pos_y, what);
     }
-
 
     can_build_here(x, y, what){
         if (what == 'ladder' 
@@ -75,13 +85,41 @@ class Building {
         } else if (what == 'shoring' && !game.map.check_if_falls(x, y)){
             return true;
         } else if ((what == 'dynamite_3x3' || what == 'dynamite_1x9') 
-            && game.map.fetch_adjacent_tile_of_type(x, y, 'empty', true).length > 0 
-            && game.map.is_solid(x, y)){
+            && game.map.fetch_adjacent_tile_of_type(x, y, 'empty', false) != null 
+            && game.map.is_solid(x, y) 
+            && this.fetch_dynamite_section(x, y, 
+                Number(what.split('_')[1].substring(2)), Number(what.split('_')[1].substring(0, 1)), what).length == 9 ){
             return true;
         }
         return false;
     }
 
+    dynamite_explodes(){
+        for (let x = 0; x < Config.max_x; x ++){
+            for (let y = 0; y < Config.max_y; y ++){
+                if (this.at(x, y) == null){
+                    continue;
+                }
+                if (this.at(x, y).split("_")[0] == 'dynamite'){
+                    game.map.mine_tile(x, y);
+                    this.is(x, y, null);
+                }
+            }
+        }
+    }
+
+    fetch_dynamite_section(start_x, start_y, width, height, what){
+        let delta = game.map.fetch_delta_from_nearest_tile(start_x, start_y, 'empty');
+        if (delta.x == -1){
+			start_x -= width - 1 ;		
+		} else if (delta.y == 1 && what == 'dynamite_1x9'){
+			const temp = width;
+			width = height;
+			height = temp;
+		}
+		return(game.map.fetch_section(start_x, start_y, width, height, delta));
+        
+    }
     how_many_they_can_buy(what){
         return Math.floor(game.player.money / Config.building_costs[what]);
     }
@@ -90,6 +128,9 @@ class Building {
         this.grid[x][y] = what;
     }
 
-    
+    pay_for_it(what){
+        game.player.spend(Config.building_costs[what]);
+        game.player.expenses ++;
+    }
 
 }

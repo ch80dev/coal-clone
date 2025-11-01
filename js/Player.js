@@ -61,9 +61,7 @@ class Player{
     mine(x, y){
         let what_is_being_mined = game.map.at(x, y);
         this.add_to_history(x, y, what_is_being_mined);
-        game.player.money += Config.ore_values[what_is_being_mined];
-        game.map.falling[x][y] = null;        
-        game.map.is(x, y, 'empty');        
+        game.map.mine_tile(x, y);
         if (what_is_being_mined != 'dirt'){
             this.moves ++;
             

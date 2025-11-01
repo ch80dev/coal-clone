@@ -25,3 +25,8 @@
 .cell{
     border: 1px lightgrey dotted;
 }
+
+.highlight-dynamite, .dynamite {
+    background-color: red;
+    color: white;
+}
