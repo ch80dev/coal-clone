@@ -32,7 +32,7 @@ class Building {
     build_everywhere(from_x, from_y, to_x, to_y, what){
         for (let x = from_x; x <= to_x; x ++){
             for (let y = from_y; y <= to_y; y ++){
-                this.build_here(pos_x, y, what);
+                this.build_here(pos_x, y, what, false);
             }
         }
     }
@@ -49,10 +49,10 @@ class Building {
     build_horizontal(from_x, to_x, y, what, delta){
         let pos_x = from_x;
         while (pos_x != to_x){
-			this.build_here(pos_x, y, what);
+			this.build_here(pos_x, y, what, false);
 			pos_x += delta.x;
 		}
-        this.build_here(pos_x, y, what);
+        this.build_here(pos_x, y, what, false);
     }
 
 
@@ -68,10 +68,10 @@ class Building {
     build_vertical(x, from_y, to_y, what, delta){
         let pos_y = from_y;
         while (pos_y != to_y){
-			this.build_here(x, pos_y, what);
+			this.build_here(x, pos_y, what, false);
 			pos_y += delta.y;
 		}
-        this.build_here(x, pos_y, what);
+        this.build_here(x, pos_y, what, false);
     }
 
     can_build_here(x, y, what){
