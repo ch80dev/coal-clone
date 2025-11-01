@@ -119,8 +119,9 @@ class Environment {
     }
 
     run(){
-        let dirt_falls = this.dirt_falls();
+        this.dirt_falls();
         this.non_dirt_falls();
+        let dirt_falls = this.dirt_falls();
         return dirt_falls;
 
 
