@@ -101,7 +101,7 @@ class Building {
                     continue;
                 }
                 if (this.at(x, y).split("_")[0] == 'dynamite'){
-                    game.map.mine_tile(x, y);
+                    game.map.mine_tile(x, y, true);
                     this.is(x, y, null);
                 }
             }

@@ -165,7 +165,7 @@ class UI{
 			$("#end_of_day_money").css('color', 'red');
 		}
 		$("#next").prop('disabled', false);
-		if (Config.max_moves - game.player.moves > 0){
+		if (Config.max_moves - game.player.moves > 0 || game.game_over){
 			$("#next").prop('disabled', true);
 		}
 		$("#end_of_day_money").html(`(${ balance_after_expenses })`)

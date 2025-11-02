@@ -154,9 +154,14 @@ class Map {
         return !(x < 0 || x >= Config.max_x || y < 0 || y >= Config.max_y);
     }
 
-    mine_tile(x, y){
+    mine_tile(x, y, from_dynamite){
+
         console.log(this.at(x, y), Config.ore_values[this.at(x, y)]); //NaN bug but can't reproduce
-        game.player.money += Config.ore_values[this.at(x, y)];
+        let modifier = 1;
+        if (from_dynamite){
+            modifier * .5;
+        }
+        game.player.money += Math.round(Config.ore_values[this.at(x, y)]);
         this.falling[x][y] = null;        
         this.is(x, y, 'empty');   
     }

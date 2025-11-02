@@ -25,7 +25,7 @@ class MapGenerator {
     seed_ore(what, num_of_ores, map, game){
         for (let i = 0; i < num_of_ores; i ++){
             let rand_x = fetch_rand(0, Config.max_x - 1);
-            let rand_y = fetch_rand(Config.dirt_ends_at, Config.max_y - 1);
+            let rand_y = fetch_rand(Config.ore_min_depth[what], Config.ore_max_depth[what]);
             if (what == 'gold'){
                 rand_y = fetch_rand(Math.round(Config.max_y / 2), Config.max_y - 1);
             }
