@@ -14,7 +14,7 @@ class Game{
 	}
 
 	end_of_day(){
-		this.player.money -= Config.cost_per_day;
+		this.player.money -= Config.cost_per_day + this.player.expenses;
 		this.environment.non_dirt_starts_to_fall();
 		this.player.last_x = this.player.x;
 		this.player.x = null;

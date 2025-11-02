@@ -7,14 +7,21 @@ BUGS
 
     when you hover over falling tiles, it removes falling from it
 
-    after non-dirt tiles falls, dirt doesn't fall after it.
+    ladders a bit finicky to build and highlight
+
+    highlight didn't work when I start building a ladder
+
+    there appears to be a bug where when end of day hits, it's not actually taking everything
 
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
 
     when the tile that shoring is sitting on moves, that should destroy the shoring.
+        its probably better/simpler to just have ladders and shoring fall when there's nothing below it. (if ladder is not connected to surface)
 
-    try to see what it looks like when a ladder can only be build from the bottom of a shaft to the top of a shaft - not partial builds
+        
+    try to see what it looks like when a ladder can only be build from the bottom of a shaft to the top of a shaft - not partial builds - 
+        * so for this, a good compromise is the tile above the ladder will still fall UNLESS the ladder reaches from the top to the bottom
 
     when you fall and get hurt, flash the border of that cell red and do red delta for moves to let the player know
 
@@ -22,5 +29,10 @@ TODO
 
     redo build code now that I made build sections in stead of the stupid way of horizontal, vertical, etc
 
+    I'm not sure but I think ladders should be able to build halfway just to try and black dirt appropriately.
+        (the only problem is it sets players up to not have dirt to cushion their descent back down)
 
-    * earning too much money - going to play again and if its still too much, reduce income
+
+    x earning too much money - going to play again and if its still too much, reduce income 
+        (this made the agame much more difficult)
+

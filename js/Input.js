@@ -21,7 +21,7 @@ class Input {
             let height = Number(game.player.is_buying.split('_')[1].substring(0, 1));
 			let width = Number(game.player.is_buying.split('_')[1].substring(2));
             let section = game.buildings.fetch_dynamite_section(x, y, width, height, game.player.is_buying);
-            game.buildings.build_section(game.player.is_buying, section);
+            game.buildings.build_section(game.player.is_buying, section, true);
         }
         
         if (game.player.is_building == null){

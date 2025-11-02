@@ -42,7 +42,7 @@ class Building {
         }
         
         this.is(x, y, what);
-        if (already_paid){
+        if (!already_paid){
             this.pay_for_it(what);
         }
     }
