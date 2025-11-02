@@ -30,3 +30,8 @@
     background-color: red;
     color: white;
 }
+
+.highlight-player, .player, .highlight, .placing {
+    background-color: green;
+    color: white;
+}

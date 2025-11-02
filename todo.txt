@@ -1,17 +1,6 @@
 2025/ 10/30
 BUGS
-    you can appear to build one more building than what you can afford. - because of how I programmed it.
-    i don't think it's checking when you click to see if its too much
-
-    when you game over - it doesn't disable the buttons - possibly an issue with refresh overriding it.
-
-    when you hover over falling tiles, it removes falling from it
-
-    ladders a bit finicky to build and highlight
-
-    highlight didn't work when I start building a ladder
-
-    there appears to be a bug where when end of day hits, it's not actually taking everything
+    
 
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)

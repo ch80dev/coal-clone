@@ -64,7 +64,7 @@ class UI{
 
 	hover(x, y){	
 		if (game.buildings.at(x, y) != null || game.player.is_buying == null 
-		|| (game.player.is_buying != null && !game.buildings.can_build_here(x, y, game.player.is_buying))){
+			){
 			return;
 		}		
 		let are_they_placing = this.placing(x, y);
@@ -77,17 +77,19 @@ class UI{
 			return;
 		}
 		$(`#cell-${x}-${y}`).css('cursor', 'pointer');
-
 		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null){
 			$(`#cell-${x}-${y}`).html(Config.building_icons[game.player.is_buying]);
+			$(`#cell-${x}-${y}`).addClass('highlight')
+
 		}
 	}
 
 	leave(x, y){
 		
-		if (game.player.is_at(x, y) || game.player.is_building_at(x, y) || game.buildings.at(x, y) != null){
+		if (game.player.is_at(x, y) || game.player.is_building_at(x, y) || game.buildings.at(x, y) != null || game.map.falling[x][y] != null){
 			return;
 		}
+		$(`#cell-${x}-${y}`).removeClass('highlight');
 		$(".highlight-dynamite").html('');
 		$(".cell").removeClass('highlight-dynamite');
 		$(`#cell-${x}-${y}`).html("");
@@ -106,7 +108,7 @@ class UI{
 		let to_x = x;
 		let n = 0;		
 		let pos_x = from_x;
-		while (pos_x != to_x){
+		while ((delta.x == -1 && pos_x >= to_x)  || (delta.x == 1 && pos_x <=  to_x)){
 			$(`#cell-${pos_x}-${y}`).html(Config.building_icons[game.player.is_buying]);
 			$(`#cell-${pos_x}-${y}`).addClass('placing');
 			n ++;
@@ -122,7 +124,7 @@ class UI{
 		let to_y = y;
 		let n = 0;		
 		let pos_y = from_y;
-		while (pos_y != to_y){
+		while ((delta.y == -1 && pos_y >= to_y)  || (delta.y == 1 && pos_y <= to_y)){
 			$(`#cell-${x}-${pos_y}`).html(Config.building_icons[game.player.is_buying]);
 			$(`#cell-${x}-${pos_y}`).addClass('placing');
 			n ++;
@@ -135,25 +137,24 @@ class UI{
 	}
 
 	placing(x, y){
-		if (game.player.is_building == null){
+		if (game.player.is_building == null || game.map.at(x, y) != 'empty'){
 			return false;
 		}
 		let from_x = game.player.is_building.x;
 		let from_y = game.player.is_building.y;
 		let how_many_they_can_buy = game.buildings.how_many_they_can_buy(game.player.is_buying);
 		let delta = game.map.fetch_delta(from_x, from_y, x, y);
-		
 		if ((delta.x != 0 && delta.y != 0) 
 			|| (delta.y == 0  && Config.building_orientations[game.player.is_buying] != 'h') 
 			|| (delta.x == 0  && Config.building_orientations[game.player.is_buying] != 'v')){
-			return;
+			return false;
 		}
 		if (delta.x != 0){
 			this.place_horizontally(x, y, delta, how_many_they_can_buy);
 		} else if (delta.y != 0){
 			this.place_vertically(x, y, delta, how_many_they_can_buy);
 		}
-		
+		return true;
 	}
 
 	refresh(){	
