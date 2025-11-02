@@ -121,7 +121,7 @@ class Environment {
             for (let y = 0; y < Config.max_y; y ++){
                 let does_tile_fall = game.map.check_if_falls(x, y);
                 let is_non_dirt = Config.non_dirt.includes(game.map.at(x, y));
-                if (is_non_dirt || (!is_non_dirt && !does_tile_fall) || game.map.falling[x][y] == nulll){
+                if (is_non_dirt || (!is_non_dirt && !does_tile_fall) || game.map.falling[x][y] == null){
                     continue;
                 }                
                 game.map.falling[x][y] --;                
