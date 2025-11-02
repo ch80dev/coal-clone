@@ -22,6 +22,6 @@ class Config {
 	
 	static start_x = 0;
 	static start_y = 2;
-	static time_for_tile_to_fall = 3;
+	static time_for_tile_to_fall = 4;
 
 }

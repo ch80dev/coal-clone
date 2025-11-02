@@ -66,6 +66,22 @@ class Environment {
         game.map.is(x, y, 'empty');        
         //this.dirt_tile_falls(x, y + 1);
     }
+
+    gravity_check(){
+        for (let x = 0; x < Config.max_x; x ++){
+            for (let y = 0; y < Config.max_y; y ++){
+                let does_tile_fall = game.map.check_if_falls(x, y);
+                let is_non_dirt = Config.non_dirt.includes(game.map.at(x, y));
+                if (is_non_dirt || (!is_non_dirt && !does_tile_fall)){
+                    continue;
+                }                
+                if (game.map.falling[x][y] === null){
+                    game.map.falling[x][y] = Config.time_for_tile_to_fall;
+                } 
+
+            }    
+        }   
+    }
     non_dirt_falls(){
         for (let x = 0; x < Config.max_x; x ++){
             for (let y = 0; y < Config.max_y; y ++){
@@ -100,18 +116,14 @@ class Environment {
             start_y --;
         }
     }
-    non_dirt_starts_to_fall(){
+    non_dirt_about_to_fall(){
         for (let x = 0; x < Config.max_x; x ++){
             for (let y = 0; y < Config.max_y; y ++){
                 let does_tile_fall = game.map.check_if_falls(x, y);
                 let is_non_dirt = Config.non_dirt.includes(game.map.at(x, y));
-                if (is_non_dirt || (!is_non_dirt && !does_tile_fall)){
+                if (is_non_dirt || (!is_non_dirt && !does_tile_fall) || game.map.falling[x][y] == nulll){
                     continue;
                 }                
-                if (game.map.falling[x][y] === null){
-                    game.map.falling[x][y] = Config.time_for_tile_to_fall;
-                    continue;
-                } 
                 game.map.falling[x][y] --;                
 
             }    

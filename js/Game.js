@@ -15,7 +15,8 @@ class Game{
 
 	end_of_day(){
 		this.player.money -= this.player.expenses;
-		this.environment.non_dirt_starts_to_fall();
+		this.environment.gravity_check();
+		this.environment.non_dirt_about_to_fall();
 		this.player.last_x = this.player.x;
 		this.player.x = null;
 		this.player.y = null;
@@ -36,5 +37,7 @@ class Game{
 		this.player.is_buying = null;
 		this.player.is_building = null;
 		this.buildings.dynamite_explodes();
+		
+
 	}
 }

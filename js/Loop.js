@@ -5,6 +5,7 @@ class Loop{
            
             if (!still_running){
                 game.input.allowed = true;
+                this.environment.gravity_check();
                 game.player.start();
             }
              ui.refresh();
