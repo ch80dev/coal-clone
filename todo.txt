@@ -21,7 +21,5 @@ TODO
     I'm not sure but I think ladders should be able to build halfway just to try and black dirt appropriately.
         (the only problem is it sets players up to not have dirt to cushion their descent back down)
 
-
-    x earning too much money - going to play again and if its still too much, reduce income 
-        (this made the agame much more difficult)
+    Players should be able to keep going down to try to earn more money. If I add this, maybe add oil. (so players have to setup pipes to pipe it back out of the map.)
 

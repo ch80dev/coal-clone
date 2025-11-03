@@ -77,7 +77,10 @@ class UI{
 			return;
 		}
 		$(`#cell-${x}-${y}`).css('cursor', 'pointer');
-		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null){
+		
+		if (game.map.at(x, y) == 'empty' && game.player.is_buying != null 
+			&& ((game.player.is_building == null && game.buildings.can_build_here(x, y, game.player.is_buying)) 
+			|| game.player.is_building != null)){
 			$(`#cell-${x}-${y}`).html(Config.building_icons[game.player.is_buying]);
 			$(`#cell-${x}-${y}`).addClass('highlight')
 
