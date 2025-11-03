@@ -37,6 +37,8 @@ class Game{
 		this.player.is_buying = null;
 		this.player.is_building = null;
 		this.buildings.dynamite_explodes();
+        this.environment.buildings_fall();
+
 		
 
 	}

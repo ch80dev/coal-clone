@@ -1,4 +1,25 @@
 class Environment {
+    building_falls_down(x, y){
+        if(game.buildings.at(x, y) == null || !game.map.check_if_falls(x, y) 
+            || !game.map.is_valid(x, y + 1)){
+            return;
+        } 
+        game.buildings.is(x, y + 1,  game.buildings.at(x, y));
+        game.buildings.is(x, y, null);
+        this.building_falls_down(x, y + 1);
+    }
+
+    buildings_fall(){
+        for (let x = 0; x < Config.max_x; x ++){
+            for (let y = Config.max_y - 1; y >= 0; y --){
+                if(game.buildings.at(x, y) == null || !game.map.check_if_falls(x, y)){
+                    continue;
+                } 
+                this.building_falls_down(x, y);
+            }
+        }
+    }
+
     dirt_falls(){                
         let dirt_falling = 0;
         dirt_falling += this.dirt_falls_down();
