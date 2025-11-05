@@ -13,7 +13,6 @@ TODO
     Players should be able to keep going down to try to earn more money. If I add this, maybe add oil. (so players have to setup pipes to pipe it back out of the map.)
 
 
-    falling at 1 should be red, falling should be yellow at 2 or change borderf
 
     use numbers to select items in buy menu
 

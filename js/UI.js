@@ -39,7 +39,7 @@ class UI{
 					txt_in_cell = Config.building_icons[building_here];
 				} else if (falling != null){
 					txt_in_cell = falling;
-				
+					tile_class += " falling-" + falling; //hopefully this doesn't mess up tile class
 				}
 				if (building_here != null && building_here.split('_')[0] == 'dynamite'){
 					building_class = 'dynamite';
