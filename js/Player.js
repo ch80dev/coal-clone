@@ -23,7 +23,7 @@ class Player{
             return;
         }
         let do_they_fall = game.map.check_if_falls(this.x, this.y);
-        if(game.buildings.at(this.x, this.y) == 'ladder'){
+        if(game.buildings.at(this.x, this.y) == 'ladder' || game.buildings.at(this.x, this.y) == 'shoring'){
             do_they_fall = false;
         }
         if (!do_they_fall && this.falling > 1){

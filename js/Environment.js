@@ -12,7 +12,10 @@ class Environment {
     buildings_fall(){
         for (let x = 0; x < Config.max_x; x ++){
             for (let y = Config.max_y - 1; y >= 0; y --){
-                if(game.buildings.at(x, y) == null || !game.map.check_if_falls(x, y)){
+                if(game.buildings.at(x, y) == null || !game.map.check_if_falls(x, y) 
+                    || (game.buildings.at(x, y) == 'shoring') 
+                && game.map.is_valid(x - 1, y) && game.buildings.at(x - 1, y) == 'shoring'
+                && game.map.is_valid(x + 1, y) && game.buildings.at(x + 1, y) == 'shoring'){
                     continue;
                 } 
                 this.building_falls_down(x, y);
