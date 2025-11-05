@@ -14,6 +14,5 @@ TODO
 
 
 
-    use numbers to select items in buy menu
 
     shoring only falls if there's not a shoring to the left and right of it. shoring should also keep you from falling.

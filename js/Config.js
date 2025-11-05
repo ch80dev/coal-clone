@@ -1,4 +1,5 @@
 class Config {	
+	static buildings = [null, 'ladder', 'shoring', 'dynamite_3x3', 'dynamite1x9'];
 	static building_icons = { ladder: "[]", shoring: "=", dynamite_3x3: 'x', dynamite_1x9: 'x' };
 	static building_costs = { ladder: 10, shoring: 25, dynamite_3x3: 65, dynamite_1x9: 50  };
 	static building_orientations = { ladder: 'v', shoring: 'h', dynamite_3x3: 0, dynamite_1x9: 0 }

@@ -38,7 +38,7 @@ class Input {
     }
 
     key(what){
-        //console.log(what);
+        console.log(what);
         let delta_x = 0;
         let delta_y = 0;
         if (what === ' ' && game.player.moves == Config.max_moves){
@@ -47,7 +47,9 @@ class Input {
         } else if (what == 'z'){
             game.player.undo();
             return;
-        }   
+        } else if (what > 0 && what <5)  {
+            this.buy_button_pressed(Config.buildings[Number(what)]);
+        }
         what = what.substring(5).toLowerCase()
 
         if (what == 'left'){
