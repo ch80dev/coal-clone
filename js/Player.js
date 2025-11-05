@@ -3,7 +3,7 @@ class Player{
     history = [];
     is_buying = null;
     is_building = null;
-    money = 0;    
+    money = 1000;    
     moves = 0;
     last_x = 0;    
     constructor(){
@@ -27,6 +27,8 @@ class Player{
             do_they_fall = false;
         }
         if (!do_they_fall && this.falling > 1){
+            ui.fell = { x: this.x, y: this.y };
+            ui.minus_moves(`(-${ this.falling - 1 }`)
             game.player.moves += this.falling - 1;
         }
         if (game.player.moves > Config.max_moves){
@@ -63,6 +65,7 @@ class Player{
         this.add_to_history(x, y, what_is_being_mined);
         game.map.mine_tile(x, y, false);
         if (what_is_being_mined != 'dirt'){
+            ui.minus_moves('-1');
             this.moves ++;
             
         }

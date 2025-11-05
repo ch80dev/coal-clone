@@ -1,4 +1,6 @@
 class UI{
+	fell = null;
+	flash_delta = null;
 	constructor(){
 
 	}
@@ -48,6 +50,15 @@ class UI{
 			txt += "</div>";
 		}
 		$("#map").html(txt);
+	}
+
+	fell_flash(x, y){
+		console.log(x, y);
+		$(`#cell-${x}-${y}`).addClass('fell');
+		setTimeout(() =>{
+			$(`#cell-${x}-${y}`).removeClass('fell');
+		}, 500);
+		
 	}
 
 	highlight(start_x, start_y, width, height, what){
@@ -105,6 +116,17 @@ class UI{
 		$('button').prop('disabled', true);
 		$("#map").css('opacity', .25);
 		$("#game_over").html(msg + " Game Over!");
+	}
+
+	minus_moves(amount){
+		console.log(amount);
+		$("#move_delta").css('visibility', 'visible');
+		$("#move_delta").html(`(${amount})`);
+		this.flash_delta = setTimeout(()=> {
+			$("#move_delta").css('visibility', 'hidden');
+			console.log("hello");
+			}, 500);
+
 	}
 	place_horizontally(x, y, delta, max){		
 		let from_x = game.player.is_building.x;
@@ -175,5 +197,9 @@ class UI{
 		$("#end_of_day_money").html(`(${ balance_after_expenses })`)
 		$("#moves").html(Config.max_moves - game.player.moves);
 		this.display_buy_menu();
+		if (this.fell != null){
+			this.fell_flash(this.fell.x, this.fell.y);
+			this.fell = null;
+		}
 	}
 }

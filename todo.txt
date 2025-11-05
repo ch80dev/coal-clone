@@ -1,25 +1,20 @@
 2025/ 10/30
 BUGS
-    
+    1x9 not highlighting correctly
 
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
 
-    when the tile that shoring is sitting on moves, that should destroy the shoring.
-        its probably better/simpler to just have ladders and shoring fall when there's nothing below it. (if ladder is not connected to surface)
 
-        
-    try to see what it looks like when a ladder can only be build from the bottom of a shaft to the top of a shaft - not partial builds - 
-        * so for this, a good compromise is the tile above the ladder will still fall UNLESS the ladder reaches from the top to the bottom
-
-    when you fall and get hurt, flash the border of that cell red and do red delta for moves to let the player know
-
-    scale the upkeep cost of buildings so that instead of just +1 - its +1 per every ten levels it goes down. So a ladder within 1-10 deep is 1 but 11-20 is 2.
 
     redo build code now that I made build sections in stead of the stupid way of horizontal, vertical, etc
 
-    I'm not sure but I think ladders should be able to build halfway just to try and black dirt appropriately.
-        (the only problem is it sets players up to not have dirt to cushion their descent back down)
 
     Players should be able to keep going down to try to earn more money. If I add this, maybe add oil. (so players have to setup pipes to pipe it back out of the map.)
 
+
+    falling at 1 should be red, falling should be yellow at 2 or change borderf
+
+    use numbers to select items in buy menu
+
+    shoring only falls if there's not a shoring to the left and right of it. shoring should also keep you from falling.
