@@ -3,7 +3,7 @@ class Player{
     history = [];
     is_buying = null;
     is_building = null;
-    money = 1000;    
+    money = 0;    
     moves = 0;
     last_x = 0;    
     constructor(){

@@ -11,18 +11,18 @@
     color: white;
 }
 
-.falling-1 {
-    
+.falling-0{
     color: red;
 }
-
-.falling-2{
+.falling-1 {    
     color: orange;
 }
 
-.falling-3{
-    color: yellow;
+.falling-2{
+    color: #8B8000;
 }
+
+
 .gold{
     background-color: #FFD700;
 }

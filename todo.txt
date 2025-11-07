@@ -1,18 +1,21 @@
 2025/ 10/30
 BUGS
     1x9 not highlighting correctly
-
+    1x9 not building properly - only placed one where I clicked
 TODO
     make undo an actual upgrade - have the player pay $50 to be able to do a line of undoing (once they start to move after pressing undo, it's considered a new undo but they acn do multiple undos as long as its consecutive)
 
-
-
     redo build code now that I made build sections in stead of the stupid way of horizontal, vertical, etc
-
 
     Players should be able to keep going down to try to earn more money. If I add this, maybe add oil. (so players have to setup pipes to pipe it back out of the map.)
 
 
 
+    stop being able to place ladders on the roof
 
-    
+
+    make player highlighted
+
+    maybe be able to take back buildings
+    highlight empty spaces that are about to be covered up
+
