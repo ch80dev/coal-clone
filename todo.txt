@@ -10,10 +10,6 @@ TODO
     Players should be able to keep going down to try to earn more money. If I add this, maybe add oil. (so players have to setup pipes to pipe it back out of the map.)
 
 
-
-    stop being able to place ladders on the roof
-
-
     make player highlighted
 
     maybe be able to take back buildings

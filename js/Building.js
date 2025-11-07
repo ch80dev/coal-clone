@@ -76,9 +76,7 @@ class Building {
 
     can_build_here(x, y, what){
         if (what == 'ladder' 
-            && ((game.map.is_valid(x, y - 1) 
-                && (game.map.at(x, y - 1) == 'sky' || game.map.is_solid(x, y - 1) 
-                || this.at(x, y - 1) == 'ladder'))
+            && ((game.map.is_valid(x, y - 1) && this.at(x, y - 1) == 'ladder')
             || (game.map.is_valid(x, y + 1) && (game.map.is_solid(x, y + 1) 
                 || this.at(x, y + 1) == 'ladder')))){
             return true;
