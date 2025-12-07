@@ -31,12 +31,13 @@
 }
 .sky {
     background-color: #87CEEB;
+    border: 1px solid #87CEEB;
 }
 .stone{
     background-color: #A9A9A9;
 }
-.cell{
-    border: 1px lightgrey dotted;
+.cell:not(.sky){
+    border: 1px grey dotted;
 }
 
 .highlight-dynamite, .dynamite {
@@ -44,7 +45,7 @@
     color: white;
 }
 
-.highlight-player, .player, .highlight, .placing {
+.highlight, .placing {
     background-color: green;
     color: white;
 }
@@ -53,3 +54,9 @@
     border: 1px red solid;
     background-color: #380000;
 } 
+
+.player:not(.sky){
+    border: 1px white solid;
+    
+    
+}

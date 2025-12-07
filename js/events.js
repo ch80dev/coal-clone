@@ -35,6 +35,9 @@ $(document).on('click', 'button', function(e){
 	ui.refresh()
 })
 
+$(document).on('click', '#income_on_tiles', function(e){
+	ui.toggle_income_on_tiles();	
+});
 
 $(document).on('click', '#next', function(e){
 	game.next_day();

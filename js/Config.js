@@ -4,6 +4,7 @@ class Config {
 	static building_costs = { ladder: 10, shoring: 25, dynamite_3x3: 65, dynamite_1x9: 50  };
 	static building_orientations = { ladder: 'v', shoring: 'h', dynamite_3x3: 0, dynamite_1x9: 0 }
 	static cost_per_day = 100;
+	static default_income_on_tiles = true;
 	static dirt_starts_at = 3;
 	static dirt_ends_at = 6;	
 	static loop_interval_timing = 250;

@@ -1,4 +1,5 @@
 class UI{
+	income_on_tiles = Config.default_income_on_tiles;
 	fell = null;
 	flash_delta = null;
 	constructor(){
@@ -31,6 +32,7 @@ class UI{
 				let building_class = '';
 				let building_here = game.buildings.at(x, y);
 				let falling = game.map.falling[x][y];
+				let player_class = '';
 				let tile_class = game.map.at(x, y);
 				let txt_in_cell = "";
 				if (game.player.is_at(x, y) && Config.max_moves - game.player.moves > 0){
@@ -40,11 +42,18 @@ class UI{
 				} else if (falling != null){
 					txt_in_cell = falling;
 					tile_class += " falling-" + falling; //hopefully this doesn't mess up tile class
+				} else if (this.income_on_tiles 
+					&& Config.ore_values[tile_class] != undefined && Config.ore_values[tile_class] > 0){
+					txt_in_cell = Config.ore_values[tile_class];
 				}
 				if (building_here != null && building_here.split('_')[0] == 'dynamite'){
 					building_class = 'dynamite';
 				}
-				txt += `<div id='cell-${x}-${y}' class='cell ${tile_class} ${building_class}'>
+				if (game.player.is_at(x, y)){
+					player_class = ' player ';
+				}
+				txt += `<div id='cell-${x}-${y}' 
+					class='cell ${tile_class} ${building_class} ${player_class}'>
 					${txt_in_cell}</div>`;
 			}
 			txt += "</div>";
@@ -201,5 +210,13 @@ class UI{
 			this.fell_flash(this.fell.x, this.fell.y);
 			this.fell = null;
 		}
+		if (this.income_on_tiles){
+			$("#income_on_tiles").prop('checked', true);
+		}
+	}
+
+	toggle_income_on_tiles(){
+		this.income_on_tiles = !this.income_on_tiles;
+		this.refresh();
 	}
 }
